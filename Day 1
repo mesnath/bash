@@ -1,0 +1,35 @@
+literally everything you need is on the student guide
+
+Commands n shit
+  man
+  pwd
+  cd
+    / - root
+    ~ - home
+  touch
+    -t = timestamp
+  ln     - links
+    -s = symbolic
+    if you don't do -s it'll be a hardlink
+    symbolic goes away after original is deleted, hardlink doesn't
+find
+  -inum <value> > /dev/null
+  -name
+  -size
+  -cmin (minimum creaated time
+  - maxdepth <number>
+    - set how far you want it to go
+  -executable ! type -d ----search for executables that aren't directories
+  -exec ---- performs given action to files/directories it finds
+-printf "%i <inodes> %f<filename)\n"
+  mindepth <number>
+    - damn near same shit
+
+2>/dev/null   
+      GETS RID OF ERRORS
+grep
+egrep
+cut -d: -f3-4
+      cuts on colons on the third position until the 5th
+cut -d' '
+      cuts on space, default for cut is tab
