@@ -1,0 +1,62 @@
+awk
+  -F (field)
+    ex: awk -F: '{print $1}'
+        prints first field deliminated by a : (can replace :)
+    ex2: awk -F: '{print $1,$3}' 
+        prints fields 1 and 3
+        seperates the fields with a space by default
+    ex3: awk -F: '{print $NF}'
+        prints last field ($NF is a built in variable for the last field)
+    ex4: awk -F: '{print $0}'
+        prints any line that has : in it ($0 is basically the -s in cut)
+    ex5: awk -F: 'BEGIN {OFS="#"}'{print $1, $3}'
+        same as ex2 but seperates with # (can replace # with whatever, just make sure you use double quotes)
+        OFC = Output Field Seperator
+  - can use conditionals
+    ex1: awk -F: '($3 >= 150) {print $0}'
+        if field 3 is greater than or equal to 150, print the whole line
+    ex2: awk -F: '($3 == root) {print $0}'
+        if field 3 is root, print the whole line
+    ex3: awk -F: '($3 >= 150) {print $3}'
+        if field 3 is greater than or equal to 150, print field 3
+  -v (substitution)
+    ex1: awk -v myvar=$(sed -i 's/root/groot/g' ~/passwd) -F: {'OFC=":"}{$1=myvar; print}'
+        if the line has root in it, replace it with groot
+
+
+command substitution:
+  ex1: B='cat /etc/passwd'
+      stores command as string and when you call the variable (with echo) it'll execute the command
+  ex2: A=$(cat /etc/passwd)
+      stores the output of the command and when called prints said output without new lines
+sed
+  string editor/edit files on matching patterns
+  -i 
+    permanent change
+  -if you do /g after what you're changing to it make it global(substitutes every instance) by default, substitutes the first instance in each line
+  - s/ at the start means substitute
+    ex1: sed 's/home/nobodyhome' passwd
+      changes substitues first instance on each line of 'home' with 'nobodyhome' in ~/passwd
+    ex2: sed 's/home/nobodyhome/g' passwd
+      changes substitues every instance on each line of 'home' with 'nobodyhome' in ~/passwd
+    ex3: sed 's/\/bin\/bash/\/been\/better/g' passwd
+        replaces every instance on every line of /bin/bash with /bin/better
+    ex4: sed 's/\/bin\/bash/\/been\/better' passwd
+        replaces first instance on every line of /bin/bash with /bin/better
+    ex5: sed '/root/d' passwd
+        replaces every line with root in it
+    ex5: sed -e '/xrdp/d' -e '/telnetd/d' passwd
+        deletes every line eith xrpd or telnetd
+sort
+ idk what to tell ya, it sorts shit baed on the position in ascii table
+  -n             sorts content numerically
+  -u             sorts content uniqely
+  -nr            sorts content numerically reversed
+  -t +
+  -k 2,4         sorts 1st by content in the 2nd column, then by content in the 4th column
+
+uniq
+    have to pipe sort to it, it gives you more options
+    sorts one instance of each thing
+  -c
+    sorts and gives a count to how many there are
