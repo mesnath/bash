@@ -1,0 +1,45 @@
+Write a basic bash script that greps ONLY the IP addresses in the text file provided (named StoryHiddenIPs in the current directory); sort them uniquely by number of times they appear.
+
+  grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" StoryHiddenIPs | sort | uniq -c | sort -rn
+
+
+
+  
+    Using ONLY the awk command, write a BASH one-liner script that extracts ONLY the names of all the system and user accounts that are not UIDs 0-3.
+    Only display those that use /bin/bash as their default shell.
+    The input file is named $HOME/passwd and is located in the current directory.
+    Output the results to a file called $HOME/SED/names.txt
+
+awk -F: '($3 > 3 && $NF == "/bin/bash") {print $1}' ~/passwd > ~/SED/names.txt
+
+
+
+
+      
+    Find all dmesg kernel messages that contain CPU or BIOS (uppercase) in the string, but not usable or reserved (case-insensitive)
+    Print only the msg itself, omitting the bracketed numerical expressions ie: [1.132775]
+
+dmesg | grep 'CPU\|BIOS' | grep -iv 'reserved\|usable' | cut -d] -f2-
+
+
+
+
+
+  
+    Write a Bash script using "Command Substitution" to replace all passwords, using openssl, from the file $HOME/PASS/shadow.txt with the MD5 encrypted password: Password1234, with salt: bad4u
+    Output of this command should go to the screen/standard output.
+    You are not limited to a particular command, however you must use openssl. Type man openssl passwd for more information.
+
+#!/bin/bash
+PW='Password1234'
+SA='bad4u'
+SL=$(openssl passwd -1 -salt $SA $PW)
+awk -F: -v "awk_var=$SL" 'BEGIN {OFS=":"} {$2=awk_var} {print $0}' ~/PASS/shadow.txt
+
+
+
+
+
+      Using ONLY sed, write all lines from $HOME/passwd into $HOME/PASS/passwd.txt that do not end with either /bin/sh or /bin/false.
+
+        sed -e '/\/bin\/false/d' -e '/\/bin\/sh/d' ~/passwd > ~/PASS/passwd.txt
