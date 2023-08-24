@@ -11,7 +11,7 @@ awk
         prints any line that has : in it ($0 is basically the -s in cut)
     ex5: awk -F: 'BEGIN {OFS="#"}'{print $1, $3}'
         same as ex2 but seperates with # (can replace # with whatever, just make sure you use double quotes)
-        OFC = Output Field Seperator
+        OFS = Output Field Seperator
   - can use conditionals
     ex1: awk -F: '($3 >= 150) {print $0}'
         if field 3 is greater than or equal to 150, print the whole line
