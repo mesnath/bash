@@ -48,7 +48,7 @@ sed
     ex5: sed -e '/xrdp/d' -e '/telnetd/d' passwd
         deletes every line eith xrpd or telnetd
 sort
- idk what to tell ya, it sorts shit baed on the position in ascii table
+ idk what to tell ya, it sorts shit based on the position in ascii table
   -n             sorts content numerically
   -u             sorts content uniqely
   -nr            sorts content numerically reversed
