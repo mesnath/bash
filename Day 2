@@ -60,3 +60,10 @@ uniq
     sorts one instance of each thing
   -c
     sorts and gives a count to how many there are
+
+
+
+
+
+#!/bin/bash
+tail -1 $1 | awk -F: -v  :user=$2" "d=$3" BEGIN {OFS=":"} {$1=user} {$3=id} {$4=id} {$6="/home/"user} {$NF="/bin/bash"} {print $0}' >> 
