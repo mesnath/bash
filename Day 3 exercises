@@ -3,7 +3,7 @@
     Ensure there is no trailing / at the end of the directory path when outputting to standard output.
     You may need to sort the output depending on the command(s) you use. Have each path displayed only once.
 
-find $HOME -type f -name "*.bin" -exec dirname {} \; | sort -u
+find $HOME -type f -iname "*.bin" -exec dirname {} \; | sort -u
 
 
 
