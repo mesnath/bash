@@ -1,0 +1,6 @@
+
+
+    Print to standard output all usernames from the file path specified by the parameter filename sorted ascending numerically by user id.
+    The file will be in the format of /etc/passwd
+
+sort -nt: -k 3,3 /etc/passwd | cut -d: -f1
