@@ -20,14 +20,24 @@ fi
     Have your script send six ping packets to your default gateway, utilizing the path discovered in the previous step, and assign the response to a variable using command substitution.
     Evaluate the response as being either successful or failure, and print an appropriate message to the screen.
 
-****ANSWER HERE ****
+#!/bin/bash
+pingtest=$(which ping)
+gateway=$(ip route | awk '/default/{print $3}')
+#$pingtest -c6 $gateway
+test='0%'
+response=$($pingtest -c6 $gateway | awk '/loss/{print $6}')
+if [[ "$response" == "$test" ]]; then
+    echo "successful"
+else
+    echo "failure"
+fi
 
 
 
 
 
     Create the following files in a new directory you create $HOME/ZIP:
-        file1 will contain the md5sum of the text 12345
+        file1 will contain the md5sum of the text 12345 
         file2 will contain the md5sum of the text 6789
         file3 will contain the md5sum of the text abcdef
     Create a zip file containing the three files above, without being stored inside a directory in the zip file. Name the zip file $HOME/ZIP/file.zip
@@ -58,7 +68,12 @@ Utilize Bash looping to iteratively create each user account and their directori
     The other fields in the new entries should match root's entry
     Users should be created in the order specified
 
-****ANSWER HERE ****
+rootline=$(head -1 $HOME/passwd)
+for x in {LARRY,CURLY,MOE}; do
+myuid=$(cat $HOME/$x.txt)
+mkdir $HOME/$x
+echo "$rootline" | awk -F: -v user=$x -v uid=$myuid 'BEGIN{OFS=":"} {$1=user;$3=uid;$4=uid;$6="$HOME/"user}{print $0}' >> $HOME/passwd
+done
 
 
 
@@ -70,7 +85,21 @@ Utilize Bash looping to iteratively create each user account and their directori
     Have your script uniquely sort the contents of the two files by count, numerically-reversed, and output the results, with applicable titles, to the screen. An example of the desired output is shown below.
         NOTE: There is a blank line being printed between the two sections of the output below.
 
-****ANSWER HERE ****
+#!/bin/bash
+find /etc -type f -exec stat -c '%a' {} \; > ./source 2>dev/null
+for x in $(cat ./source) ; do
+    if [[ $x -le 640 ]]; then
+        echo \"$x\" >> ./less
+    elif [[ $x -ge 642 ]]; then
+        eco \"$x\" >> ./more
+    fi
+done
+echo 'Files w/ OCTAL Perm Values 642+:'
+cat /more | sort | uniq -c | sort -nr
+echo
+echo 'Files w/ OCTAL Perm Values 0-640:'
+cat ~/less | sort | uniq -c | sort -nr
+echo
 
 
 
