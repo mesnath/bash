@@ -1,0 +1,10 @@
+for x in $1; do
+if [[ $x == 'cat' ]]; then
+echo 'dog' >> $2
+fi
+done
+for x in $1; do
+if [[ $x == 'Navy' ]]; then
+echo 'Army' >> $2
+fi
+done
