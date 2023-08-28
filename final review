@@ -1,0 +1,73 @@
+DAY 1
+  find
+    -type
+      f
+        file
+      d
+        directories
+      p
+        named pipes
+    -name (iname for case insensitive)
+    -maxdepth <>
+    -exec command options {} \; OR +
+    -mtime, -atime, -ctime (modified, accessed, created)
+    -mmin n
+  touch
+    -t
+    -r
+    -d
+      date
+  grep
+    -v
+    -i
+      case insensitive
+    -E
+      regex
+    -c
+      context, lines above and below
+    -r
+      recursive
+        give it the file path
+    -a
+      changes binary files to text
+  
+    ex1: grep -options /file/path
+  all of the file system commands
+  awk
+    -F<deliminator>
+    ex1: awk -F: '{print $0,$NF,$1-1829373478}'
+  cut
+    -d
+      deliminator
+    -f
+      field
+    -s
+      select deliminator
+    -c
+      character count
+    wc -l
+      line count
+    sort
+      -n
+        numerical
+    uniq
+      must sort before uniq
+    sed
+    rm
+    rmdir
+    tar
+      -czv
+          creates tarball
+      -C
+        change directories before executing
+  if [[ condition ]]; then
+    fgjdfgjkf
+  elif [[ condition ]]; then
+    fgkjdfg
+  else
+    klgjdf
+  fi
+
+  for x in <whatever>; do
+    fdjgkfgjk
+  done
