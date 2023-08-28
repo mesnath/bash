@@ -1,0 +1,19 @@
+A=120
+B=120
+expr $A - $B -> 100  = prints the output, expr = expression
+C=$(expr $A - $B) = cant be called UNLESS using echo $C
+*******************************************************************************************************************************************
+      SPECIAL PARAMaTERS
+$# = Number of arguments passed
+$0 = Script name
+$2 = Second argument passed
+$* = Arguments passed to script
+$? = Exit status of the last command
+$_ = Last argument provided to previous command 
+$$ = PID of current shell
+$- = Flags that are set
+$! = Process ID of the most recent background job
+*******************************************************************************************************************************************
+md5sum variable.sh = makes a md5 for that file
+echo variable.sh | md5sum = makes a md5 for that string, not the file
+*******************************************************************************************************************************************
